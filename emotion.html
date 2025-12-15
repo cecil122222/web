@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <title>감정 기록</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <a href="index.html" class="home-btn">← 메인</a>
+
+
+<header>😊 오늘의 감정</header>
+
+<main>
+  <div class="emojis">
+    <span onclick="saveEmotion('😀')">😀</span>
+    <span onclick="saveEmotion('🙂')">🙂</span>
+    <span onclick="saveEmotion('😐')">😐</span>
+    <span onclick="saveEmotion('😔')">😔</span>
+    <span onclick="saveEmotion('😡')">😡</span>
+  </div>
+  <p id="emotionResult"></p>
+</main>
+
+<script src="js/script.js"></script>
+</body>
+</html>

@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Green Diary</title>
+
+  <link rel="stylesheet" href="css/style.css">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+
+<header>
+  <div class="logo" onclick="showSection('calendar')">
+    <span style="color:#2d6a4f; font-size:1.5em;">🖉</span>
+  </div>
+  <div class="menu">
+    <button id="menuEmotion" onclick="showSection('emotion')">감정 기록</button>
+    <button id="menuDiary" onclick="showSection('diary')">일기 작성</button>
+    <button id="menuTodo" onclick="showSection('todo')">할 일 체크</button>
+    <button id="menuEmotionChange" onclick="showSection('emotionChange')">감정 변화</button>
+  </div>
+</header>
+
+<!-- 📅 메인 달력 -->
+<section id="calendar" class="section active">
+  <div class="calendar-header">
+    <button onclick="prevMonth()">◀</button>
+    <span id="monthYear"></span>
+    <button onclick="nextMonth()">▶</button>
+  </div>
+  <div id="calendarGrid" class="calendar-grid"></div>
+</section>
+
+<!-- 😊 감정 기록 -->
+<section id="emotion" class="section">
+  <h2>감정 기록</h2>
+
+  <img src="images/calendar-green.svg" class="date-picker" onclick="pickDate()">
+
+  <div class="emotion-selection">
+    <span onclick="setEmotion('행복', this)">😄</span>
+    <span onclick="setEmotion('보통', this)">🙂</span>
+    <span onclick="setEmotion('지루', this)">😐</span>
+    <span onclick="setEmotion('슬픔', this)">😢</span>
+    <span onclick="setEmotion('화남', this)">😡</span>
+  </div>
+
+  <!-- ✏️ 감정 한 줄 메모 -->
+  <input
+    type="text"
+    id="emotionMemoInput"
+    placeholder="왜 이런 감정이었는지 한 줄로 적어보세요"
+    style="width:100%; padding:8px; margin-top:12px; font-size:1em;"
+  >
+
+  <button class="save-btn" onclick="saveEmotion()">저장</button>
+</section>
+
+<!-- 📝 일기 -->
+<section id="diary" class="section">
+  <h2>일기 작성</h2>
+
+  <img src="images/calendar-green.svg" class="date-picker" onclick="pickDiaryDate()">
+
+  <div id="diaryInfo" style="text-align:center; margin-bottom:12px;">
+    <p id="diaryDateText" style="font-weight:bold;"></p>
+    <p id="diaryEmotionText" style="font-size:1.5em;"></p>
+  </div>
+
+  <textarea id="diaryInput" placeholder="오늘 하루를 기록해보세요"></textarea>
+  <button class="save-btn" onclick="saveDiary()">저장</button>
+</section>
+
+<!-- ✅ 할 일 -->
+<section id="todo" class="section">
+  <h2>할 일 체크</h2>
+
+  <img src="images/calendar-green.svg" class="date-picker" onclick="pickTodoDate()">
+
+  <input type="text" id="todoInput" placeholder="할 일을 입력하세요">
+  <button class="save-btn" onclick="addTodo()">추가</button>
+
+  <ul id="todoList"></ul>
+
+  <!-- 완료율 (체크리스트 아래) -->
+  <div id="todoProgressBox" style="margin:15px 0; display:none;">
+    <p id="todoProgressText" style="font-weight:bold; text-align:center;"></p>
+    <div style="background:#e9ecef; border-radius:10px; height:14px; overflow:hidden;">
+      <div id="todoProgressBar"
+           style="height:100%; width:0%; background:#2d6a4f; transition:width 0.3s;">
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 🔥 감정 변화 -->
+<section id="emotionChange" class="section">
+  <h2>월간 감정 변화</h2>
+
+  <div class="calendar-header">
+    <button onclick="prevEmotionMonth()">◀</button>
+    <span id="emotionMonthYear"></span>
+    <button onclick="nextEmotionMonth()">▶</button>
+  </div>
+
+  <div id="emotionCalendarGrid" class="calendar-grid"></div>
+
+<!-- ⭐ 감정 색상 범례 -->
+<div class="emotion-legend">
+  <div class="legend-item">
+    <span class="legend-color happy"></span>
+    <span class="legend-text">행복</span>
+  </div>
+  <div class="legend-item">
+    <span class="legend-color normal"></span>
+    <span class="legend-text">보통</span>
+  </div>
+  <div class="legend-item">
+    <span class="legend-color bored"></span>
+    <span class="legend-text">지루</span>
+  </div>
+  <div class="legend-item">
+    <span class="legend-color sad"></span>
+    <span class="legend-text">슬픔</span>
+  </div>
+  <div class="legend-item">
+    <span class="legend-color angry"></span>
+    <span class="legend-text">화남</span>
+  </div>
+</div>
+
+
+  <h3 style="text-align:center; margin-top:30px;">주간 감정 변화</h3>
+  <canvas id="weeklyEmotionChart" height="220"></canvas>
+</section>
+
+<!-- 📌 상세 모달 -->
+<div id="detailModal" class="modal">
+  <div class="modal-content">
+    <span class="close" onclick="closeDetail()">&times;</span>
+    <h3 id="detailDate"></h3>
+    <p id="detailEmotion"></p>
+    <p id="detailDiary"></p>
+    <ul id="detailTodos"></ul>
+  </div>
+</div>
+
+<script src="js/script.js"></script>
+</body>
+</html>
+
+
+
+

@@ -1,0 +1,323 @@
+/* =========================
+   기본 설정
+========================= */
+body{
+  margin:0;
+  font-family: sans-serif;
+  background-color:#fff;
+  background-image:
+    linear-gradient(0deg, #eee 1px, transparent 1px),
+    linear-gradient(90deg, #eee 1px, transparent 1px);
+  background-size:25px 25px;
+}
+
+button{
+  cursor:pointer;
+  font-family: inherit;
+}
+
+/* =========================
+   헤더 & 메뉴
+========================= */
+header{
+  display:flex;
+  align-items:center;
+  padding:10px;
+  background-color:#d8f3dc;
+}
+
+.logo{
+  cursor:pointer;
+  margin-right:20px;
+}
+
+.menu button{
+  background:none;
+  border:none;
+  color:#2d6a4f;
+  font-size:1.05em;
+  margin-right:18px;
+}
+
+.menu button.active{
+  font-weight:bold;
+  border-bottom:2px solid #2d6a4f;
+}
+
+/* =========================
+   섹션 공통
+========================= */
+.section{
+  display:none;
+  padding:20px;
+}
+
+.section.active{
+  display:block;
+}
+
+h2{
+  text-align:center;
+  margin-bottom:15px;
+}
+
+/* =========================
+   달력 공통
+========================= */
+.calendar-header{
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  gap:15px;
+  margin-bottom:10px;
+}
+
+.calendar-header span{
+  font-size:1.4em;
+  font-weight:bold;
+}
+
+.calendar-header button{
+  border:none;
+  background:#2d6a4f;
+  color:#fff;
+  padding:6px 10px;
+  border-radius:6px;
+}
+
+.calendar-grid{
+  display:grid;
+  grid-template-columns:repeat(7,1fr);
+  gap:5px;
+  margin-top:10px;
+}
+
+.calendar-cell{
+  height:70px;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  border:1px solid #ccc;
+  font-weight:bold;
+  cursor:pointer;
+  background:#fff;
+  transition:background 0.2s;
+}
+
+.calendar-cell:hover{
+  background:#f1f3f5;
+}
+
+/* =========================
+   날짜 선택 아이콘
+========================= */
+.date-picker{
+  display:block;
+  margin:0 auto 15px auto;
+  width:40px;
+  cursor:pointer;
+}
+
+/* =========================
+   감정 기록
+========================= */
+.emotion-selection{
+  display:flex;
+  justify-content:center;
+  margin:20px 0;
+}
+
+.emotion-selection span{
+  font-size:2em;
+  margin:0 10px;
+  cursor:pointer;
+  transition:transform 0.2s;
+}
+
+.emotion-selection span:hover{
+  transform:scale(1.2);
+}
+
+/* =========================
+   저장 버튼
+========================= */
+.save-btn{
+  display:block;
+  margin:20px auto;
+  background-color:#2d6a4f;
+  color:#fff;
+  padding:10px 20px;
+  border:none;
+  border-radius:8px;
+  font-size:1.05em;
+}
+
+/* =========================
+   일기 작성
+========================= */
+textarea{
+  width:100%;
+  height:160px;
+  font-size:1em;
+  padding:10px;
+  box-sizing:border-box;
+}
+
+/* =========================
+   할 일 체크
+========================= */
+#todoInput{
+  width:100%;
+  padding:8px;
+  margin-bottom:10px;
+}
+
+#todoList{
+  list-style:none;
+  padding:0;
+}
+
+#todoList li{
+  margin:8px 0;
+  font-size:1em;
+}
+
+/* 체크박스 색상 (초록색) */
+#todoList input[type="checkbox"]{
+  accent-color:#2d6a4f;
+}
+
+/* =========================
+   할 일 완료율
+========================= */
+#todoProgressBox{
+  margin-top:15px;
+}
+
+#todoProgressText{
+  text-align:center;
+  font-weight:bold;
+  margin-bottom:6px;
+}
+
+/* =========================
+   감정 변화 범례
+========================= */
+.emotion-legend{
+  display:flex;
+  justify-content:center;
+  gap:16px;
+  margin-top:20px;
+  flex-wrap:wrap;
+}
+
+.legend-item{
+  display:flex;
+  align-items:center;
+  font-size:0.95em;
+}
+
+.legend-color{
+  width:14px;
+  height:14px;
+  border-radius:4px;
+  margin-right:6px;
+}
+
+.legend-color.happy{ background:#FFD93D; }
+.legend-color.normal{ background:#95D5B2; }
+.legend-color.bored{ background:#CED4DA; }
+.legend-color.sad{ background:#74C0FC; }
+.legend-color.angry{ background:#FF6B6B; }
+
+/* =========================
+   토스트 메시지
+========================= */
+.toast{
+  position:fixed;
+  bottom:30px;
+  left:50%;
+  transform:translateX(-50%);
+  background:#2d6a4f;
+  color:#fff;
+  padding:10px 20px;
+  border-radius:20px;
+  opacity:0;
+  transition:opacity 0.3s;
+  z-index:9999;
+}
+
+.toast.show{
+  opacity:1;
+}
+
+/* =========================
+   상세 모달
+========================= */
+.modal{
+  position:fixed;
+  top:0;
+  left:0;
+  width:100%;
+  height:100%;
+  background:rgba(0,0,0,0.4);
+  display:none;
+  justify-content:center;
+  align-items:center;
+  z-index:1000;
+}
+
+.modal-content{
+  background:#fff;
+  padding:20px;
+  width:90%;
+  max-width:400px;
+  border-radius:10px;
+}
+
+.modal-content h3{
+  margin-top:0;
+}
+
+.close{
+  float:right;
+  font-size:1.5em;
+  cursor:pointer;
+}
+
+
+
+
+/* =========================
+   감정 변화 범례 (색 + 텍스트)
+========================= */
+.emotion-legend{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 18px;
+  margin-top: 20px;
+  flex-wrap: wrap;
+}
+
+.legend-item{
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.95em;
+  color: #333;
+}
+
+.legend-color{
+  width: 14px;
+  height: 14px;
+  border-radius: 4px;
+  display: inline-block;
+}
+
+/* 감정별 색상 */
+.legend-color.happy{ background:#FFD93D; }
+.legend-color.normal{ background:#95D5B2; }
+.legend-color.bored{ background:#CED4DA; }
+.legend-color.sad{ background:#74C0FC; }
+.legend-color.angry{ background:#FF6B6B; }
